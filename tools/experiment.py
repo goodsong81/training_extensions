@@ -6,6 +6,7 @@
 import argparse
 import csv
 import dataclasses
+import gc
 import json
 import os
 import re
@@ -698,6 +699,8 @@ class OtxCommandRunner:
                 print(" ".join(command))
 
             self._previous_cmd_entry = command[1]
+
+            gc.collect()
 
         if not dryrun:
             organize_exp_result(self._workspace, self._command_var)
